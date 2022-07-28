@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.screen_light">
    <application
-        android:label="screen_light"
+        android:label="Screen Light"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
