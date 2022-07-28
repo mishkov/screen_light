@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.screen_light">
+    package="com.carpet.screen_light">
    <application
         android:label="Screen Light"
         android:name="${applicationName}"
