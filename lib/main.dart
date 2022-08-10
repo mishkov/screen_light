@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const ScreenLightApp());
@@ -34,8 +35,36 @@ class _HomeRouteState extends State<HomeRoute> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return const Scaffold(
-      backgroundColor: Color(0xFFFF0000),
+    return Scaffold(
+      backgroundColor: const Color(0xFFFF0000),
+      body: Align(
+        alignment: const Alignment(0.9, -0.9),
+        child: IconButton(
+          icon: const Icon(
+            Icons.privacy_tip_outlined,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            redirectToPrivacyPocily(() {
+              const snackBar = SnackBar(
+                content: Text(
+                  'Cannot open privacy policy',
+                ),
+              );
+              ScaffoldMessenger.maybeOf(context)?.showSnackBar(snackBar);
+            });
+          },
+        ),
+      ),
     );
+  }
+
+  Future<void> redirectToPrivacyPocily(void Function() onError) async {
+    final url = Uri.parse(
+        'https://github.com/mishkov/screen_light/blob/master/PRIVACY_POLICY.md');
+
+    if (!await launchUrl(url)) {
+      onError();
+    }
   }
 }
